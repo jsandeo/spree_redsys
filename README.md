@@ -13,7 +13,7 @@ Install
 
 Add the following line to your application's Gemfile.
 
-gem "spree_redsys", :git => "https://github.com/sylvinho81/spree_redsys.git", :branch => '3-0-stable'
+gem "spree_redsys", :git => "https://github.com/jsandeo/spree_redsys.git", :branch => '3-0-stable'
 
 bundle install
 

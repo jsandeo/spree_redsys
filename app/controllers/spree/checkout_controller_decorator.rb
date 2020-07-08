@@ -1,8 +1,10 @@
 module Spree
-  Spree::CheckoutController.class_eval do
-    autoload :Helper, 'active_merchant/billing/integrations/redsys/helper.rb'
-
-    before_filter :redirect_to_redsys_form_if_needed, :only => [:update]
+  module CheckoutControllerDecorator extend ActiveSupport::Concern
+#  Spree::CheckoutController.class_eval do
+    included do
+      autoload :Helper, 'active_merchant/billing/integrations/redsys/helper.rb'
+      before_action :redirect_to_redsys_form_if_needed, :only => [:update]
+    end
 
     protected
 
@@ -32,8 +34,7 @@ module Spree
           :key_type      => payment_method.preferred_key_type
       }
     end
-
-
   end
-
 end
+
+::Spree::CheckoutController.include Spree::CheckoutControllerDecorator if ::Spree::CheckoutController.included_modules.exclude?(Spree::CheckoutControllerDecorator)

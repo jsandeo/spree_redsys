@@ -63,7 +63,7 @@ module ActiveMerchant #:nodoc:
             self.credentials = options.delete(:credentials) if options[:credentials]
             super(order, account, options)
             @redsysparams = {
-                :Ds_Merchant_Order => order,
+                :Ds_Merchant_Order => encode_order_number(order),
                 :Ds_Merchant_MerchantName => account,
                 :Ds_Merchant_Amount => options[:amount],
                 :Ds_Merchant_Currency => Redsys.currency_code(options[:currency]),
@@ -129,6 +129,11 @@ module ActiveMerchant #:nodoc:
           def hmac(key,message)
             OpenSSL::HMAC.digest(OpenSSL::Digest.new('sha256'), key, message)
           end
+
+	  # JSO To avoid Redsys' "Duplicate order number" if the user navigates back & forth from Redsys' payment form
+	  def encode_order_number(spree_order_number)
+            Time.now.to_i.to_s.last(4) + spree_order_number.gsub(/\D/, '').to_i.to_s(36).upcase
+	  end
 
         end
       end
