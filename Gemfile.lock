@@ -129,6 +129,7 @@ GEM
       climate_control (>= 0.0.3, < 1.0)
     colorize (0.8.1)
     concurrent-ruby (1.0.5)
+    crass (1.0.6)
     css_parser (1.4.9)
       addressable
     deface (1.0.2)
@@ -157,7 +158,8 @@ GEM
     kaminari (0.17.0)
       actionpack (>= 3.0.0)
       activesupport (>= 3.0.0)
-    loofah (2.0.3)
+    loofah (2.6.0)
+      crass (~> 1.0.2)
       nokogiri (>= 1.5.9)
     mail (2.6.4)
       mime-types (>= 1.16, < 4)
