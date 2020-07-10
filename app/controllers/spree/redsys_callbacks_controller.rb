@@ -24,7 +24,6 @@ module Spree
       render :nothing => true
     end
 
-
     # Handle the incoming user
     def redsys_confirm
       @order ||= Spree::Order.find_by_number!(params[:order_id])
@@ -76,11 +75,6 @@ module Spree
       end
       @order.finalize!
     end
-
-
-
-
-
   end
 end
 

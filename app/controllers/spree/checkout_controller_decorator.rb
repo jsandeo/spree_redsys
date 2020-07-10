@@ -1,6 +1,7 @@
 module Spree
-  module CheckoutControllerDecorator extend ActiveSupport::Concern
-#  Spree::CheckoutController.class_eval do
+  module CheckoutControllerDecorator
+		extend ActiveSupport::Concern
+		
     included do
       autoload :Helper, 'active_merchant/billing/integrations/redsys/helper.rb'
       before_action :redirect_to_redsys_form_if_needed, :only => [:update]

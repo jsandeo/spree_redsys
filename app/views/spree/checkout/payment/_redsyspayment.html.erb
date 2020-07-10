@@ -1,7 +1,13 @@
-<%= image_tag 'credit_cards/credit_card.gif', :id => 'creditcard-redsys' %>
+<%
+# Name your accepted card icon files as <card_type>_card.png and place them in "/credit_cards" within your image assets directory
+card_icons_html = payment_method.preferred_card_icons.split(',').map(&:strip).map { |card_icon|
+	(image_tag "credit_cards/#{card_icon}_card.png", :id => "#{card_icon}-card-redsys") if !Rails.application.assets.find_asset("credit_cards/#{card_icon}_card.png").nil?
+}.compact
+# If none of these exist, the default Redsys icons will be used
+card_icons_html.push(image_tag 'credit_cards/credit_card.gif', :id => 'creditcard-redsys') if card_icons_html.empty?
+%>
+<% card_icons_html.each do |e| %>
+<%= e %>
+<% end %>
 <p data-hook="redsys_payment"></p>
 <% param_prefix = "payment_source[#{payment_method.id}]" %>
-
-
-
-

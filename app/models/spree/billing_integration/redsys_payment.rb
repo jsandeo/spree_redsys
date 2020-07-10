@@ -5,6 +5,7 @@ class Spree::BillingIntegration::RedsysPayment < Spree::BillingIntegration
   preference :secret_key, :string
   preference :key_type, :string, :default => 'HMAC_SHA256_V1'
   preference :notify_alternative_domain_url, :string #This can allow us cloudflare integration
+  preference :card_icons, :string, 'visa,mastercard,maestro'
 
   def provider_class
     ActiveMerchant::Billing::Integrations::Redsys
