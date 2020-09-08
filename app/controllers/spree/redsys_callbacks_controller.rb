@@ -21,7 +21,7 @@ module Spree
       else
         @payment = payment_upgrade(params, false)
       end
-      head :ok
+      head :ok # Do not render anything
     end
 
     # Handle the incoming user
