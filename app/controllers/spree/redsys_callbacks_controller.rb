@@ -2,7 +2,7 @@ module Spree
   class RedsysCallbacksController < Spree::BaseController
     include ActiveMerchant::Billing::Integrations
 
-    skip_before_filter :verify_authenticity_token
+    skip_before_action :verify_authenticity_token
 
     #ssl_required
 
@@ -21,7 +21,7 @@ module Spree
       else
         @payment = payment_upgrade(params, false)
       end
-      render :nothing => true
+      head :ok
     end
 
     # Handle the incoming user
@@ -77,4 +77,3 @@ module Spree
     end
   end
 end
-

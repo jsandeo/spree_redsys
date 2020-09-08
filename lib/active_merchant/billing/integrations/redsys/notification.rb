@@ -192,7 +192,7 @@ module ActiveMerchant #:nodoc:
           # of parameters.
           #
           def parse(post)
-            if post.is_a?(Hash)
+            if post.respond_to?(:each_pair)
               post.each { |key, value|  params[key] = value }
             else
               for line in post.to_s.split('&')
@@ -209,5 +209,3 @@ module ActiveMerchant #:nodoc:
     end
   end
 end
-
-
