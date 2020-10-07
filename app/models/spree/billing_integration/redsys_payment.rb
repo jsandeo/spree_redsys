@@ -30,7 +30,9 @@ class Spree::BillingIntegration::RedsysPayment < Spree::BillingIntegration
     ActiveMerchant::Billing::Response.new(true, "", {}, {})
   end
 
-  def cancel(response); end
+  def cancel(response)
+    ActiveMerchant::Billing::Response.new(true, "", {}, {})
+  end
 
   def void(*args)
     ActiveMerchant::Billing::Response.new(true, "", {}, {})
