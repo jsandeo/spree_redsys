@@ -42,6 +42,10 @@ class Spree::BillingIntegration::RedsysPayment < Spree::BillingIntegration
     false
   end
 
+  def credit(*)
+    ActiveMerchant::Billing::Response.new(true, "", {}, {})
+  end
+
   def amount_in_cents(amount)
     (100 * amount).to_i
   end
